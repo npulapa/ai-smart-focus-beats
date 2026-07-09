@@ -1,0 +1,122 @@
+[
+  {
+    "id": "session_001",
+    "userId": "user_001",
+    "startTime": "2026-07-09T07:00:00.000Z",
+    "endTime": "2026-07-09T07:25:00.000Z",
+    "duration": 25,
+    "environment": "Deep Forest Rain",
+    "category": "Nature",
+    "completed": true,
+    "focusScore": 88,
+    "date": "2026-07-09"
+  },
+  {
+    "id": "session_002",
+    "userId": "user_001",
+    "startTime": "2026-07-09T09:00:00.000Z",
+    "endTime": "2026-07-09T09:25:00.000Z",
+    "duration": 25,
+    "environment": "Lo-fi Study Café",
+    "category": "Lo-fi",
+    "completed": true,
+    "focusScore": 76,
+    "date": "2026-07-09"
+  },
+  {
+    "id": "session_003",
+    "userId": "user_001",
+    "startTime": "2026-07-08T08:00:00.000Z",
+    "endTime": "2026-07-08T08:25:00.000Z",
+    "duration": 25,
+    "environment": "Bach Piano Works",
+    "category": "Classical",
+    "completed": true,
+    "focusScore": 94,
+    "date": "2026-07-08"
+  },
+  {
+    "id": "session_004",
+    "userId": "user_001",
+    "startTime": "2026-07-08T10:30:00.000Z",
+    "endTime": "2026-07-08T10:55:00.000Z",
+    "duration": 25,
+    "environment": "Deep Space Ambient",
+    "category": "Ambient",
+    "completed": true,
+    "focusScore": 81,
+    "date": "2026-07-08"
+  },
+  {
+    "id": "session_005",
+    "userId": "user_001",
+    "startTime": "2026-07-07T14:00:00.000Z",
+    "endTime": "2026-07-07T14:25:00.000Z",
+    "duration": 25,
+    "environment": "Thunderstorm Library",
+    "category": "Nature",
+    "completed": true,
+    "focusScore": 85,
+    "date": "2026-07-07"
+  },
+  {
+    "id": "session_006",
+    "userId": "user_001",
+    "startTime": "2026-07-06T09:00:00.000Z",
+    "endTime": "2026-07-06T09:25:00.000Z",
+    "duration": 25,
+    "environment": "Lo-fi Study Café",
+    "category": "Lo-fi",
+    "completed": true,
+    "focusScore": 72,
+    "date": "2026-07-06"
+  },
+  {
+    "id": "session_007",
+    "userId": "user_001",
+    "startTime": "2026-07-05T08:00:00.000Z",
+    "endTime": "2026-07-05T08:25:00.000Z",
+    "duration": 25,
+    "environment": "Bach Piano Works",
+    "category": "Classical",
+    "completed": true,
+    "focusScore": 90,
+    "date": "2026-07-05"
+  },
+  {
+    "id": "session_008",
+    "userId": "user_001",
+    "startTime": "2026-07-04T11:00:00.000Z",
+    "endTime": "2026-07-04T11:25:00.000Z",
+    "duration": 25,
+    "environment": "Binaural Beta Waves",
+    "category": "Binaural",
+    "completed": true,
+    "focusScore": 78,
+    "date": "2026-07-04"
+  },
+  {
+    "id": "session_1783613945961",
+    "userId": "user_001",
+    "startTime": "2026-07-09T16:19:05.961Z",
+    "endTime": null,
+    "duration": 25,
+    "environment": "Deep Forest Rain",
+    "category": "Nature",
+    "completed": false,
+    "focusScore": 0,
+    "date": "2026-07-09"
+  },
+  {
+    "id": "session_1783614207813",
+    "userId": "user_001",
+    "startTime": "2026-07-09T16:23:27.813Z",
+    "endTime": null,
+    "duration": 25,
+    "environment": "Deep Forest Rain",
+    "category": "Nature",
+    "completed": false,
+    "focusScore": 0,
+    "date": "2026-07-09"
+  }
+]
