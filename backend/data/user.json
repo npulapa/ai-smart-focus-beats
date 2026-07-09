@@ -1,0 +1,15 @@
+{
+  "id": "user_001",
+  "name": "Alex",
+  "email": "alex@cognitiveflow.app",
+  "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuCpy4A2d5A0WgNzw0R3ZYtbUypGvbGBN0aWLx55uxopzgDBaUwK8in6Celr_jnQo3n02Nt-8o7qMQqd3IxzSXlIKzatJoqd2cq3s_3d-mQGNmsoeJNvhgRBW2M1Z7aij7T5pLjHjkWcSReqLMMSc_5WRQoNuMh3VbHyu2ZlZD0HvfEpviLUvPSstye2lsHmdSbB8DPFrH3yYG4I98E4TblxofjgbOi_ZBNKISBUAcn9kfbdsfAvWhStWHF_2GEK09q2JM0aCEVWYkeK",
+  "settings": {
+    "focusDuration": 25,
+    "shortBreak": 5,
+    "longBreak": 15,
+    "defaultEnvironment": "env_001",
+    "notifications": true,
+    "theme": "dark"
+  },
+  "createdAt": "2026-06-27T10:00:00.000Z"
+}
