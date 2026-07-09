@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cognitive Flow — AI Smart Focus Beats</title>
+  <meta name="description" content="Enter deep focus states with AI-curated music, Pomodoro timers, and personalized cognitive insights." />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ======= NAVBAR ======= -->
+<header class="navbar">
+  <div class="navbar-brand">
+    <div class="logo">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpy4A2d5A0WgNzw0R3ZYtbUypGvbGBN0aWLx55uxopzgDBaUwK8in6Celr_jnQo3n02Nt-8o7qMQqd3IxzSXlIKzatJoqd2cq3s_3d-mQGNmsoeJNvhgRBW2M1Z7aij7T5pLjHjkWcSReqLMMSc_5WRQoNuMh3VbHyu2ZlZD0HvfEpviLUvPSstye2lsHmdSbB8DPFrH3yYG4I98E4TblxofjgbOi_ZBNKISBUAcn9kfbdsfAvWhStWHF_2GEK09q2JM0aCEVWYkeK" alt="Alex" />
+    </div>
+    <span class="brand-name">Cognitive Flow</span>
+  </div>
+  <div class="navbar-actions">
+    <button class="icon-btn" id="settings-btn" title="Settings" aria-label="Settings">
+      <span class="material-symbols-outlined" style="font-size:22px;">settings</span>
+    </button>
+  </div>
+</header>
+
+<!-- ======= PAGES ======= -->
+<main>
+
+  <!-- PAGE 1: DASHBOARD -->
+  <section id="page-dashboard" class="page active">
+    <div class="container">
+
+      <!-- Hero Greeting -->
+      <div style="padding: 48px 0 32px; text-align: center;">
+        <h1 class="text-display" id="greeting-text" style="margin-bottom:12px;">Good Morning, Alex</h1>
+        <p class="text-body-lg text-muted" id="greeting-sub" style="max-width:420px; margin: 0 auto 36px;">Your cognitive rhythm is at its peak. Ready for a deep work session?</p>
+        <div style="position:relative; display:inline-flex; justify-content:center;">
+          <div style="position:absolute;inset:-4px;background:rgba(78,222,163,0.15);border-radius:9999px;filter:blur(16px);pointer-events:none;" class="animate-pulse-slow"></div>
+          <button class="btn-primary" id="start-focus-btn">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+            Start Focusing
+          </button>
+        </div>
+      </div>
+
+      <!-- Bento Grid -->
+      <div style="display:grid; grid-template-columns:1fr; gap:16px; margin-bottom:32px;">
+        <!-- Row 1: Score + Streak -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <!-- Focus Score -->
+          <div class="glass-card" style="padding:28px 20px; min-height:180px; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden;">
+            <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;background:rgba(192,193,255,0.08);border-radius:50%;filter:blur(20px);"></div>
+            <span class="text-label text-tertiary" style="text-transform:uppercase; letter-spacing:0.08em;">Live Score</span>
+            <div>
+              <div style="display:flex; align-items:baseline; gap:4px; margin:8px 0 4px;">
+                <span class="text-display text-primary" id="focus-score-val">85</span>
+                <span class="text-muted" style="font-size:20px;">%</span>
+              </div>
+              <p class="text-muted" style="font-size:12px;" id="focus-score-sub">12% above your average</p>
+            </div>
+          </div>
+          <!-- Today Stats -->
+          <div class="glass-card" style="padding:28px 20px; min-height:180px; display:flex; flex-direction:column; justify-content:space-between;">
+            <span class="text-label text-tertiary" style="text-transform:uppercase; letter-spacing:0.08em;">Today</span>
+            <div>
+              <div style="display:flex; align-items:baseline; gap:4px; margin:8px 0 4px;">
+                <span class="text-display" style="color:var(--color-secondary);" id="today-minutes">0</span>
+                <span class="text-muted" style="font-size:16px;">min</span>
+              </div>
+              <p class="text-muted" style="font-size:12px;"><span id="today-sessions">0</span> sessions completed</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weekly Streak -->
+        <div class="glass-card" style="padding:28px 24px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h2 class="text-headline-md">Weekly Streak</h2>
+            <div style="display:flex; align-items:center; gap:6px; background:rgba(192,193,255,0.1); border-radius:9999px; padding:6px 14px;">
+              <span class="material-symbols-outlined text-primary" style="font-size:16px; font-variation-settings:'FILL' 1;">local_fire_department</span>
+              <span class="text-label text-primary" id="streak-count">12 Day Streak</span>
+            </div>
+          </div>
+          <div id="weekly-chart" style="display:flex; align-items:flex-end; justify-content:space-between; gap:6px; height:100px;">
+            <!-- Dynamically rendered -->
+          </div>
+          <div id="weekly-labels" style="display:flex; justify-content:space-between; margin-top:8px; gap:6px;">
+            <!-- Dynamically rendered -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Sessions -->
+      <div style="margin-bottom:40px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <h2 class="text-headline-md">Recent Sessions</h2>
+        </div>
+        <div id="recent-sessions-list" style="display:flex; flex-direction:column; gap:10px;">
+          <div style="text-align:center; padding:32px; color:var(--color-on-surface-variant);">
+            <div class="spinner" style="margin:0 auto 12px;"></div>
+            <p class="text-label">Loading sessions…</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE 2: ACTIVE SESSION -->
+  <section id="page-session" class="page">
+    <div class="container" style="max-width:500px; display:flex; flex-direction:column; align-items:center; padding-top:24px;">
+
+      <!-- Environment Label -->
+      <div style="display:flex; align-items:center; gap:8px; margin-bottom:36px;">
+        <span class="material-symbols-outlined text-tertiary" style="font-size:18px;">music_note</span>
+        <span class="text-label text-muted" id="active-env-name" style="text-transform:uppercase;">Deep Forest Rain</span>
+      </div>
+
+      <!-- Timer Ring -->
+      <div style="position:relative; width:280px; height:280px; flex-shrink:0; margin-bottom:32px;">
+        <svg style="position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg);" viewBox="0 0 280 280">
+          <circle cx="140" cy="140" r="128" fill="transparent" stroke="rgba(255,255,255,0.05)" stroke-width="6"/>
+          <circle id="timer-ring" cx="140" cy="140" r="128" fill="transparent"
+            stroke="#4edea3" stroke-width="6"
+            stroke-linecap="round"
+            stroke-dasharray="804"
+            stroke-dashoffset="0"
+            style="transition: stroke-dashoffset 1s linear; filter: drop-shadow(0 0 8px rgba(78,222,163,0.5));" />
+        </svg>
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:4px;">
+          <span class="text-label text-muted" id="session-mode-label" style="text-transform:uppercase; margin-bottom:4px;">Deep Work</span>
+          <span id="countdown-display" style="font-size:56px; font-weight:300; letter-spacing:-0.03em; color:var(--color-on-surface); font-family:var(--font-inter);">25:00</span>
+          <div style="display:flex; align-items:center; gap:6px; margin-top:6px; color:var(--color-tertiary);">
+            <span class="material-symbols-outlined" style="font-size:14px;">bolt</span>
+            <span class="text-label" id="focus-status-label">Focus Optimal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Waveform -->
+      <div class="waveform" style="margin-bottom:32px; width:220px;" id="waveform-bars">
+        <!-- 18 animated bars -->
+      </div>
+
+      <!-- Session Controls -->
+      <div style="display:flex; align-items:center; gap:20px; margin-bottom:40px;">
+        <button class="btn-icon-round" id="session-skip-btn" title="Skip Break">
+          <span class="material-symbols-outlined" style="font-size:22px;">skip_next</span>
+        </button>
+        <button class="btn-icon-round primary" id="session-toggle-btn">
+          <span class="material-symbols-outlined" style="font-size:30px; font-variation-settings:'FILL' 1;">pause</span>
+        </button>
+        <button class="btn-icon-round" id="session-stop-btn" title="End Session">
+          <span class="material-symbols-outlined" style="font-size:22px;">stop</span>
+        </button>
+      </div>
+
+      <!-- Environment Picker -->
+      <div class="glass-card" style="width:100%; padding:20px 24px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+          <span class="text-label text-muted" style="text-transform:uppercase;">Sound Environment</span>
+          <button class="btn-ghost" id="change-env-btn" style="font-size:12px; padding:6px 14px;">Change</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:40px; height:40px; border-radius:12px; background:rgba(78,222,163,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <span class="material-symbols-outlined text-tertiary" style="font-size:20px;" id="active-env-icon">forest</span>
+          </div>
+          <div>
+            <p style="font-weight:500; color:var(--color-on-surface); font-size:15px;" id="active-env-full-name">Deep Forest Rain</p>
+            <p class="text-label text-muted" id="active-env-category">Nature</p>
+          </div>
+          <div style="margin-left:auto; display:flex; align-items:center; gap:4px; background:rgba(78,222,163,0.1); border-radius:9999px; padding:4px 10px;">
+            <span class="material-symbols-outlined" style="font-size:14px; color:var(--color-tertiary);">bolt</span>
+            <span class="text-label" style="color:var(--color-tertiary);" id="active-env-score">88%</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE 3: EXPLORE -->
+  <section id="page-explore" class="page">
+    <div class="container">
+
+      <!-- Header -->
+      <div style="padding: 32px 0 24px; text-align:center;">
+        <h1 class="text-headline" style="margin-bottom:10px;">Discover Your Rhythm</h1>
+        <p class="text-body-lg text-muted">Curated soundscapes designed for deep concentration.</p>
+      </div>
+
+      <!-- Search -->
+      <div class="input-wrapper" style="margin-bottom:24px;">
+        <span class="material-symbols-outlined input-icon" style="font-size:20px;">search</span>
+        <input class="input-field" type="text" id="env-search" placeholder="Search 'Rainy Library', 'Deep Space'..." />
+      </div>
+
+      <!-- Category Chips -->
+      <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px;" id="category-chips">
+        <!-- Dynamic -->
+      </div>
+
+      <!-- Environments Grid -->
+      <div id="environments-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-bottom:32px;">
+        <div style="grid-column:1/-1; text-align:center; padding:48px 0; color:var(--color-on-surface-variant);">
+          <div class="spinner" style="margin:0 auto 12px;"></div>
+          <p class="text-label">Loading environments…</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE 4: INSIGHTS -->
+  <section id="page-insights" class="page">
+    <div class="container">
+
+      <!-- Header -->
+      <div style="padding: 32px 0 24px;">
+        <h1 class="text-headline" style="margin-bottom:24px;">AI Insights</h1>
+
+        <!-- Intelligence Report Card -->
+        <div class="glass-card" style="padding:28px; position:relative; overflow:hidden; margin-bottom:20px;">
+          <div style="position:absolute;right:-30px;top:-30px;width:150px;height:150px;background:rgba(78,222,163,0.07);border-radius:50%;filter:blur(40px);pointer-events:none;"></div>
+          <div style="display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
+            <div style="flex:1; min-width:200px;">
+              <div style="display:flex; align-items:center; gap:6px; color:var(--color-tertiary); margin-bottom:12px;">
+                <span class="material-symbols-outlined" style="font-size:18px; font-variation-settings:'FILL' 1;">psychology</span>
+                <span class="text-label" style="text-transform:uppercase;">Intelligence Report</span>
+              </div>
+              <p class="text-body text-muted" id="ai-summary-text" style="line-height:1.7;">
+                Loading your personalized AI analysis…
+              </p>
+            </div>
+            <div class="glass-card" style="padding:20px 24px; min-width:130px; text-align:center; flex-shrink:0; border-radius:16px;">
+              <p class="text-label text-muted" style="text-transform:uppercase; margin-bottom:4px;">Weekly Score</p>
+              <p class="text-display text-tertiary" id="weekly-score-val" style="font-size:40px;">–</p>
+              <p class="text-label" style="color:var(--color-tertiary-fixed-dim);" id="weekly-score-change"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:20px;">
+          <div class="glass-card" style="padding:18px 16px; text-align:center; border-radius:16px;">
+            <p class="text-label text-muted" style="text-transform:uppercase; margin-bottom:6px;">Sessions</p>
+            <p class="text-headline" id="stat-sessions" style="color:var(--color-primary);">–</p>
+          </div>
+          <div class="glass-card" style="padding:18px 16px; text-align:center; border-radius:16px;">
+            <p class="text-label text-muted" style="text-transform:uppercase; margin-bottom:6px;">Hours</p>
+            <p class="text-headline" id="stat-hours" style="color:var(--color-secondary);">–</p>
+          </div>
+          <div class="glass-card" style="padding:18px 16px; text-align:center; border-radius:16px;">
+            <p class="text-label text-muted" style="text-transform:uppercase; margin-bottom:6px;">Best Time</p>
+            <p class="text-headline" id="stat-best-time" style="color:var(--color-tertiary); font-size:18px;">–</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Genre Focus Chart -->
+      <div class="glass-card" style="padding:28px; margin-bottom:20px;">
+        <h2 class="text-headline-md" style="margin-bottom:24px;">Focus Score by Genre</h2>
+        <div id="genre-bars" style="display:flex; flex-direction:column; gap:18px;">
+          <!-- Dynamic -->
+        </div>
+      </div>
+
+      <!-- Peak Hours Chart -->
+      <div class="glass-card" style="padding:28px; margin-bottom:32px;">
+        <h2 class="text-headline-md" style="margin-bottom:24px;">Peak Focus Hours</h2>
+        <div style="height:180px; position:relative;">
+          <canvas id="peak-hours-chart"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- ======= BOTTOM NAV ======= -->
+<nav class="bottom-nav">
+  <button class="nav-item active" data-page="dashboard" id="nav-dashboard">
+    <span class="material-symbols-outlined">home</span>
+    <span>Home</span>
+  </button>
+  <button class="nav-item" data-page="session" id="nav-session">
+    <span class="material-symbols-outlined">timer</span>
+    <span>Focus</span>
+  </button>
+  <button class="nav-item" data-page="explore" id="nav-explore">
+    <span class="material-symbols-outlined">explore</span>
+    <span>Explore</span>
+  </button>
+  <button class="nav-item" data-page="insights" id="nav-insights">
+    <span class="material-symbols-outlined">insights</span>
+    <span>Insights</span>
+  </button>
+</nav>
+
+<!-- ======= SETTINGS PANEL ======= -->
+<div class="settings-overlay" id="settings-overlay">
+  <div class="settings-panel">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+      <h2 class="text-headline-md">Settings</h2>
+      <button class="icon-btn" id="settings-close-btn">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:20px;">
+      <!-- Name -->
+      <div>
+        <label style="display:block; margin-bottom:8px;" class="text-label text-muted">YOUR NAME</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon" style="font-size:18px;">person</span>
+          <input class="input-field" type="text" id="settings-name" value="Alex" />
+        </div>
+      </div>
+      <!-- Focus Duration -->
+      <div>
+        <label style="display:block; margin-bottom:8px;" class="text-label text-muted">FOCUS DURATION (MIN)</label>
+        <div style="display:flex; gap:8px;">
+          <button class="chip active" data-dur="25" id="dur-25">25</button>
+          <button class="chip" data-dur="45" id="dur-45">45</button>
+          <button class="chip" data-dur="60" id="dur-60">60</button>
+          <button class="chip" data-dur="90" id="dur-90">90</button>
+        </div>
+      </div>
+      <!-- Save -->
+      <button class="btn-primary" id="settings-save-btn" style="width:100%; justify-content:center; margin-top:4px;">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">check</span>
+        Save Settings
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= SESSION COMPLETE MODAL ======= -->
+<div class="modal-overlay" id="session-complete-modal">
+  <div class="modal-box">
+    <div style="width:72px; height:72px; border-radius:50%; background:rgba(78,222,163,0.15); display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+      <span class="material-symbols-outlined text-tertiary" style="font-size:36px; font-variation-settings:'FILL' 1;">check_circle</span>
+    </div>
+    <h2 class="text-headline-md" style="margin-bottom:8px;">Session Complete!</h2>
+    <p class="text-muted text-body" style="margin-bottom:6px;" id="modal-session-desc">25 minute focus session logged.</p>
+    <p class="text-tertiary" style="font-family:var(--font-mono); font-size:13px; margin-bottom:28px;" id="modal-score-text">Focus Score: 87%</p>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn-ghost" id="modal-close-btn">Return Home</button>
+      <button class="btn-primary" id="modal-again-btn">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">replay</span>
+        Start Again
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= TOAST ======= -->
+<div id="toast"></div>
+
+<!-- Scripts -->
+<script src="/js/app.js"></script>
+<script src="/js/dashboard.js"></script>
+<script src="/js/session.js"></script>
+<script src="/js/explore.js"></script>
+<script src="/js/insights.js"></script>
+
+</body>
+</html>
